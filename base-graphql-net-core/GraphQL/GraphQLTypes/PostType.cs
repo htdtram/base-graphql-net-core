@@ -12,10 +12,10 @@ namespace base_graphql_net_core.GraphQL.GraphQLTypes
     {
         public PostType()
         {
-            Field(x => x.Id, type: typeof(IdGraphType));
+            Field(x => x.Id, type: typeof(IdGraphType), nullable: false);
             Field(x => x.Title);
             Field(x => x.Description);
-            Field(x => x.Author, type: typeof(UserType));
+            Field(x => x.Author, type: typeof(UserType), nullable: false);
         }
     }
 }

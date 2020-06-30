@@ -9,5 +9,6 @@ namespace base_graphql_net_core.Repository
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetUsers();
+        Task<User> GetUserById(int id);
     }
 }

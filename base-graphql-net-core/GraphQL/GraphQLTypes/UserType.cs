@@ -11,10 +11,12 @@ namespace base_graphql_net_core.GraphQL.GraphQLTypes
     {
         public UserType()
         {
-            Field(x => x.Id, type: typeof(IdGraphType)).Description("Id property from the user object.");
+            Name = "User";
+            Field(x => x.Id, type: typeof(IdGraphType), nullable: false).Description("Id property from the user object.");
             Field(x => x.Name).Description("Name property from the user object.");
             Field(x => x.Username).Description("Username property from the user object.");
             Field(x => x.Posts, type: typeof(ListGraphType<PostType>));
+            Field(x => x.Gender, type: typeof(GenderEnum), nullable: false);
         }
     }
 }

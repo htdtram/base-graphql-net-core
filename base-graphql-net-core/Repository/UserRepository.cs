@@ -16,6 +16,8 @@ namespace base_graphql_net_core.Repository
             _db = db;
         }
 
-        public async Task<IEnumerable<User>> GetUsers() => await _db.Users.Include(x => x.Posts).ToListAsync();
+        public async Task<User> GetUserById(int id) => await _db.Users.Include(x => x.Posts).FirstOrDefaultAsync(x => !x.DelFlag && x.Id == id); 
+
+        public async Task<IEnumerable<User>> GetUsers() => await _db.Users.Include(x => x.Posts).Where(x => !x.DelFlag).ToListAsync();
     }
 }

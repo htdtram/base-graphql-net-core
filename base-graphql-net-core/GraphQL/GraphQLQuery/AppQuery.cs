@@ -26,6 +26,18 @@ namespace base_graphql_net_core.GraphQL.GraphQLQuery
                 "users",
                 resolve: context => userRepository.GetUsers()
                 );
+
+            Field<UserType>(
+                "user",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IdGraphType>> { Name = "id" }
+                    ),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<int>("id");
+                    return userRepository.GetUserById(id);
+                }
+            );
         }
     }
 }
