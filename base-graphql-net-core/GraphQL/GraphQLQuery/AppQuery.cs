@@ -14,7 +14,7 @@ namespace base_graphql_net_core.GraphQL.GraphQLQuery
         {
             Field<ListGraphType<CategoryType>>(
                 "categories",
-                resolve: context => categoryRepository.GetCategories()
+                resolve: context =>  categoryRepository.GetCategories()
                 );
 
             Field<ListGraphType<PostType>>(

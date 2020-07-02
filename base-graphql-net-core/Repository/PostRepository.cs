@@ -17,7 +17,7 @@ namespace base_graphql_net_core.Repository
         }
         public async Task<IEnumerable<Post>> GetPosts()
         {
-            return await _db.Posts.Include(x => x.Author).ToListAsync();
+            return await _db.Posts.Where(x => !x.DelFlag).Include(x => x.Author).ToListAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using base_graphql_net_core.GraphQL.GraphQLQuery;
+﻿using base_graphql_net_core.GraphQL.GraphQLMutation;
+using base_graphql_net_core.GraphQL.GraphQLQuery;
 using GraphQL;
 using GraphQL.Types;
 using System;
@@ -15,6 +16,7 @@ namespace base_graphql_net_core.GraphQL.GraphQLSchema
         public AppSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<AppQuery>();
+            Mutation = resolver.Resolve<AppMutation>();
         }
     }
 }

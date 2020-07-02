@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace base_graphql_net_core
 {
@@ -31,8 +32,10 @@ namespace base_graphql_net_core
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddTransient<DataContext>();
             services.AddDbContext<DataContext>(opt =>
-               opt.UseSqlServer(Configuration.GetConnectionString("default")));
+               opt.UseSqlServer(Configuration.GetConnectionString("default")), ServiceLifetime.Transient);
+            //services./*AddSingleton*/<Func<DataContext>>(options => () => options.GetService<DataContext>());
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPostRepository, PostRepository>();

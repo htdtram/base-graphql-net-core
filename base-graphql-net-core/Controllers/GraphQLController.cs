@@ -41,7 +41,7 @@ namespace base_graphql_net_core.Controllers
                 x.ComplexityConfiguration = new ComplexityConfiguration { MaxDepth = 15 };
                 x.FieldMiddleware.Use<InstrumentFieldsMiddleware>();
 
-            }).ConfigureAwait(false);
+            });
 
             var json = await _writer.WriteToStringAsync(result);
 
