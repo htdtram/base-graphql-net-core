@@ -1,7 +1,11 @@
+using base_graphql_net_core.Consumer;
 using base_graphql_net_core.Entities.Context;
 using base_graphql_net_core.GraphQL.GraphQLSchema;
 using base_graphql_net_core.Repository;
 using GraphQL;
+using GraphQL.Client.Abstractions;
+using GraphQL.Client.Http;
+using GraphQL.Client.Serializer.Newtonsoft;
 using GraphQL.Http;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
@@ -51,6 +55,9 @@ namespace base_graphql_net_core
 
             services.AddGraphQL(o => { o.ExposeExceptions = false; })
                 .AddGraphTypes(ServiceLifetime.Scoped);
+
+            services.AddScoped<IGraphQLClient>(s => new GraphQLHttpClient(Configuration["GraphQLURI"], new NewtonsoftJsonSerializer()));
+            services.AddScoped<UserConsumer>();
 
             services.AddControllers()
                 .AddNewtonsoftJson(o => o.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

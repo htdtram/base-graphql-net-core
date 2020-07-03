@@ -45,7 +45,6 @@ namespace base_graphql_net_core.GraphQL.GraphQLMutation
                 {
                     var userId = context.GetArgument<int>("id");
                     return userRepository.DeleteUser(userId);
-
                 });
         }
     }
